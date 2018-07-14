@@ -4,6 +4,7 @@
       "@babel/env",
       {
         "modules": "commonjs",
+        "useBuiltIns": false,
         "targets": {
           "browsers": [
             "last 1 Chrome version"

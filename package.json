@@ -1,6 +1,6 @@
 {
   "name": "wolkenkit-react",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "A higher order component for wolkenkit",
   "main": "lib/index.js",
   "scripts": {

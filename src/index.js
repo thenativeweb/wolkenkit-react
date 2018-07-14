@@ -2,7 +2,8 @@ import React from 'react';
 import wolkenkit from 'wolkenkit-client';
 
 let connection;
-export const withWolkenkit = ({ host, port, protocol }) => Component =>
+
+export const withWolkenkit = ({host, port, protocol}) => Component =>
     class extends React.Component {
         constructor(props) {
             super(props);
@@ -10,6 +11,7 @@ export const withWolkenkit = ({ host, port, protocol }) => Component =>
                 connectionEstablished: connection || false
             };
         }
+
         async componentDidMount() {
             if (!connection) {
                 try {
@@ -18,7 +20,7 @@ export const withWolkenkit = ({ host, port, protocol }) => Component =>
                         port,
                         protocol
                     });
-                    this.setState({ connectionEstablished: true });
+                    this.setState({connectionEstablished: true});
                 } catch (error) {
                     throw error;
                 }
@@ -27,8 +29,7 @@ export const withWolkenkit = ({ host, port, protocol }) => Component =>
 
         render() {
             if (!this.state.connectionEstablished) return null;
-            <Component application={connection} />
-            return React.createElement(Component, {application}, );
+            return <Component application={connection}/>
         }
     };
 
