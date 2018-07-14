@@ -27,6 +27,9 @@ export const withWolkenkit = ({ host, port, protocol }) => Component =>
 
         render() {
             if (!this.state.connectionEstablished) return null;
-            return <Component application={connection} />;
+            <Component application={connection} />
+            return React.createElement(Component, {application}, );
         }
     };
+
+export default withWolkenkit;
