@@ -1,0 +1,38 @@
+{
+  "name": "wolkenkit-react",
+  "version": "0.0.5",
+  "description": "A higher order component for wolkenkit",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src -d lib --copy-files"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicolaisueper/wolkenkit-react.git"
+  },
+  "keywords": [
+    "wolkenkit",
+    "react",
+    "hoc"
+  ],
+  "author": "Nicolai Süper (nico@k40s.net)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicolaisueper/wolkenkit-react/issues"
+  },
+  "homepage": "https://github.com/nicolaisueper/wolkenkit-react#readme",
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "wolkenkit-client": "^2.0.0"
+  },
+  "devDependencies": {
+    "react": "^16.0.0",
+    "wolkenkit-client": "^2.0.0",
+    "@babel/cli": "^7.0.0-beta.46",
+    "@babel/core": "^7.0.0-beta.46",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.46",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.46",
+    "@babel/preset-env": "^7.0.0-beta.46",
+    "@babel/preset-react": "^7.0.0-beta.46"
+  }
+}
