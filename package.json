@@ -1,10 +1,9 @@
 {
   "name": "wolkenkit-react",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A higher order component for wolkenkit",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nicolaisueper/wolkenkit-react.git"
@@ -21,7 +20,7 @@
   },
   "homepage": "https://github.com/nicolaisueper/wolkenkit-react#readme",
   "peerDependencies": {
-    "react": "*",
-    "wolkenkit-client": "*"
+    "react": "^16.0.0",
+    "wolkenkit-client": "^2.0.0"
   }
 }

@@ -21,6 +21,7 @@ $ npm install --save wolkenkit-react
 ## Sample usage
 
 ```js
+// Consumer
 export class App extends React.Component {
   // ...
   componentDidMount() {
@@ -36,6 +37,14 @@ export class App extends React.Component {
   }
   // ...
 }
+
+// Use HOC
+const Wrapped = withWolkenkit({
+  host: "local.wolkenkit.io",
+  port: "3000",
+  protocol: "https"
+})(App);
+return <Wrapped />;
 ```
 
 ## License
