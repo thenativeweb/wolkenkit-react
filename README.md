@@ -54,10 +54,17 @@ export const MessageList = () => (
 
 ```js
 import React from "react";
-import { withApplication } from "wolkenkit-react";
+import { wolkenkitConnect } from "wolkenkit-react";
 
 const Component = ({ application }) => <div>{/* ... */}</div>;
-export default withApplication(Component);
+
+// A little 'reduxy' way of managing commands :)
+const mapCommandsToProps = {
+  sendMessage: app => messageText =>
+    app.communication.message().send({ text: messageText })
+};
+
+export default wolkenkitConnect(mapCommandsToProps)(Component);
 ```
 
 ## License
