@@ -1,21 +1,7 @@
 {
-  "presets": [
-    [
-      "@babel/env",
-      {
-        "modules": "commonjs",
-        "useBuiltIns": false,
-        "targets": {
-          "browsers": [
-            "last 1 Chrome version"
-          ]
-        }
-      }
-    ],
-    "@babel/react"
-  ],
   "plugins": [
     "@babel/plugin-proposal-object-rest-spread",
-    "@babel/plugin-proposal-class-properties"
+    "@babel/plugin-transform-modules-commonjs",
+    "@babel/plugin-transform-react-jsx"
   ]
 }

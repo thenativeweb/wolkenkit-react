@@ -1,6 +1,6 @@
 {
   "name": "wolkenkit-react",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "A higher order component for wolkenkit",
   "main": "lib/index.js",
   "scripts": {
@@ -22,17 +22,16 @@
   },
   "homepage": "https://github.com/nicolaisueper/wolkenkit-react#readme",
   "peerDependencies": {
-    "react": "^16.0.0",
-    "wolkenkit-client": "^2.0.0"
+    "react": "*",
+    "wolkenkit-client": ">= 2.0.0"
   },
   "devDependencies": {
-    "react": "^16.0.0",
-    "wolkenkit-client": "^2.0.0",
-    "@babel/cli": "^7.0.0-beta.46",
-    "@babel/core": "^7.0.0-beta.46",
-    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.46",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.46",
-    "@babel/preset-env": "^7.0.0-beta.46",
-    "@babel/preset-react": "^7.0.0-beta.46"
+    "@babel/cli": "7.0.0-beta.53",
+    "@babel/core": "7.0.0-beta.53",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.53",
+    "@babel/plugin-transform-modules-commonjs": "7.0.0-beta.53",
+    "@babel/plugin-transform-react-jsx": "7.0.0-beta.53",
+    "react": "16.4.1",
+    "wolkenkit-client": "2.0.0"
   }
 }

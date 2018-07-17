@@ -20,31 +20,44 @@ $ npm install --save wolkenkit-react
 
 ## Sample usage
 
-```js
-// Consumer
-export class App extends React.Component {
-  // ...
-  componentDidMount() {
-    const { application } = this.props;
-    application.lists.messages
-      .readAndObserve({
-        orderBy: { timestamp: "descending" },
-        take: 50
-      })
-      .failed(err => console.error(err))
-      .started(this.setMessages)
-      .updated(this.setMessages);
-  }
-  // ...
-}
+### Create the application provider
 
-// Use HOC
-const Wrapped = withWolkenkit({
-  host: "local.wolkenkit.io",
-  port: "3000",
-  protocol: "https"
-})(App);
-return <Wrapped />;
+```js
+import React from "react";
+import { Application } from "wolkenkit-react";
+
+export class App extends React.Component {
+  render() {
+    return (
+      <Application host={"local.wolkenkit.io"} port={3000}>
+        {/* ... */}
+      </Application>
+    );
+  }
+}
+```
+
+### Read lists
+
+```js
+import React from "react";
+import { List } from "wolkenkit-react";
+
+export const MessageList = () => (
+  <List name={"messages"} observe>
+    {messages => <ul className={"messages"}>{/* ... */}</ul>}
+  </List>
+);
+```
+
+## Bind application instance to component
+
+```js
+import React from "react";
+import { withApplication } from "wolkenkit-react";
+
+const Component = ({ application }) => <div>{/* ... */}</div>;
+export default withApplication(Component);
 ```
 
 ## License
