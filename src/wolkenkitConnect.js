@@ -6,6 +6,7 @@ const wolkenkitConnect = (mapCommandsToProps = {}) => Component => props => (
     {application => {
       const commands = Object.keys(mapCommandsToProps).reduce(
         (accumulator, propertyName) => ({
+          ...accumulator,
           [propertyName]: mapCommandsToProps[propertyName](application)
         }),
         {}
