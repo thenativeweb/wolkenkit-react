@@ -1,24 +1,16 @@
 # wolkenkit-react
 
-wolkenkit-react is a higher order component for the wolkenkit client.
-
-## Table of contents
-
-<!-- toc -->
-
-- [Installation](#installation)
-- [Sample usage](#sample-usage)
-- [License](#license)
-
-<!-- tocstop -->
+wolkenkit-react is a higher-order React component for wolkenkit applications.
 
 ## Installation
 
 ```shell
-$ npm install --save wolkenkit-react
+$ npm install wolkenkit-react
 ```
 
-## Sample usage
+## Quick start
+
+[…]
 
 ### Create the application provider
 
@@ -67,7 +59,21 @@ const mapCommandsToProps = {
 export default wolkenkitConnect(mapCommandsToProps)(Component);
 ```
 
+## Running the build
+
+To build this module use [roboter](https://www.npmjs.com/package/roboter).
+
+```shell
+$ npx roboter
+```
+
 ## License
 
-Please be aware of the licenses of the components we use in this project.
-Everything else that has been developed by the contributions to this project is under [MIT License](LICENSE).
+The MIT License (MIT)
+Copyright (c) 2018 Nicolai Süper and the native web.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
