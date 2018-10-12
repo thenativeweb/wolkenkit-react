@@ -1,7 +1,7 @@
 {
   "name": "wolkenkit-react",
   "version": "0.0.5",
-  "description": "wolkenkit-react is a higher-order React component for wolkenkit applications.",
+  "description": "Official React bindings for wolkenkit.",
   "contributors": [
     {
       "name": "Nicolai Süper",
