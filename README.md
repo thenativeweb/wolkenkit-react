@@ -1,6 +1,6 @@
 # wolkenkit-react
 
-wolkenkit-react is a higher-order React component for wolkenkit applications.
+Official React bindings for the [wolkenkit](https://github.com/thenativeweb/wolkenkit) framework.
 
 ## Installation
 
