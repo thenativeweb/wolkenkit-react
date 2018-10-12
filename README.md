@@ -1,6 +1,6 @@
 # wolkenkit-react
 
-Official React bindings for the [wolkenkit](https://github.com/thenativeweb/wolkenkit) framework.
+Official React bindings for [wolkenkit](https://github.com/thenativeweb/wolkenkit).
 
 ## Installation
 
