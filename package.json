@@ -13,7 +13,10 @@
     }
   ],
   "main": "dist/index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@babel/runtime": "7.1.2",
+    "wolkenkit-client": "2.0.0"
+  },
   "devDependencies": {
     "roboter": "2.0.0"
   },

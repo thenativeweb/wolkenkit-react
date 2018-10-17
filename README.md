@@ -15,13 +15,13 @@ $ npm install wolkenkit-react
 ### Create the application provider
 
 ```js
-import React from "react";
-import { Application } from "wolkenkit-react";
+import React from 'react';
+import { Application } from 'wolkenkit-react';
 
 export class App extends React.Component {
   render() {
     return (
-      <Application host={"local.wolkenkit.io"} port={3000}>
+      <Application host={ 'local.wolkenkit.io' } port={ 3000 }>
         {/* ... */}
       </Application>
     );
@@ -29,15 +29,28 @@ export class App extends React.Component {
 }
 ```
 
-### Read lists
+### Reading lists
 
 ```js
-import React from "react";
-import { List } from "wolkenkit-react";
+import React from 'react';
+import { List } from 'wolkenkit-react';
 
 export const MessageList = () => (
-  <List name={"messages"} observe>
-    {messages => <ul className={"messages"}>{/* ... */}</ul>}
+  <List name={ 'messages' } observe>
+    { messages => <ul className={ 'messages' }>{/* ... */}</ul> }
+  </List>
+);
+```
+
+### Reading list items
+
+```js
+import React from 'react';
+import { ListItem } from 'wolkenkit-react';
+
+export const MessageList = () => (
+  <ListItem list={ 'messages' } id='' observe>
+    { item => <div className={ 'message' }>{ message.text }</div> }
   </List>
 );
 ```
@@ -45,8 +58,8 @@ export const MessageList = () => (
 ## Bind application instance to component
 
 ```js
-import React from "react";
-import { wolkenkitConnect } from "wolkenkit-react";
+import React from 'react';
+import { wolkenkitConnect } from 'wolkenkit-react';
 
 const Component = ({ application }) => <div>{/* ... */}</div>;
 
