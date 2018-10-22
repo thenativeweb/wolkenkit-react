@@ -1,7 +1,7 @@
-import { Application } from './Application.jsx';
-import { List } from './List.jsx';
-import { ListItem } from './ListItem.jsx';
-import { withWolkenkit } from './withWolkenkit.jsx';
-import { wolkenkitConnect } from './wolkenkitConnect.jsx';
+import { Application } from './Application';
+import { List } from './List';
+import { ListItem } from './ListItem';
+import { withWolkenkit } from './withWolkenkit';
+import { wolkenkitConnect } from './wolkenkitConnect';
 
 export { Application, List, ListItem, withWolkenkit, wolkenkitConnect };

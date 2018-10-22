@@ -52,6 +52,10 @@ class List extends React.Component {
       take
     } = this.props;
 
+    if (!application) {
+      throw new Error('Application is misssing.');
+    }
+
     const list = application.lists[name];
 
     if (this.isReading) {
@@ -92,7 +96,11 @@ class List extends React.Component {
 
   render () {
     const { items } = this.state;
-    const { children } = this.props;
+    const { children, name } = this.props;
+
+    if (!name) {
+      throw new Error('Name is missing.');
+    }
 
     if (typeof children === 'function') {
       return children(items);

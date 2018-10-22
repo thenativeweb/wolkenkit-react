@@ -12,7 +12,7 @@ class Application extends React.Component {
   }
 
   componentDidMount () {
-    const { host, port, protocol = 'https' } = this.props;
+    const { host, port, protocol = 'wss' } = this.props;
 
     /* eslint-disable no-console */
     wolkenkit.

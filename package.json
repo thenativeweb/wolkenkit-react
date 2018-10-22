@@ -10,15 +10,25 @@
     {
       "name": "Golo Roden",
       "email": "golo.roden@thenativeweb.io"
+    },
+    {
+      "name": "Matthias Wagler",
+      "email": "matthias.wagler@thenativeweb.io"
     }
   ],
   "main": "dist/index.js",
   "dependencies": {
-    "@babel/runtime": "7.1.2",
+    "shelljs": "0.8.2",
     "wolkenkit-client": "2.0.0"
   },
   "devDependencies": {
-    "roboter": "2.0.0"
+    "assertthat": "1.0.0",
+    "@babel/runtime": "7.1.2",
+    "puppeteer": "1.9.0",
+    "react": "16.5.2",
+    "react-dom": "16.5.2",
+    "roboter": "2.0.0",
+    "wolkenkit": "2.0.0"
   },
   "repository": {
     "type": "git",
