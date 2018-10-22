@@ -1,37 +1,42 @@
 {
   "name": "wolkenkit-react",
-  "version": "0.1.0",
-  "description": "A higher order component for wolkenkit",
-  "main": "lib/index.js",
-  "scripts": {
-    "build": "babel src -d lib --copy-files"
+  "version": "0.0.5",
+  "description": "Official React bindings for wolkenkit.",
+  "contributors": [
+    {
+      "name": "Nicolai Süper",
+      "email": "nico@k40s.net"
+    },
+    {
+      "name": "Golo Roden",
+      "email": "golo.roden@thenativeweb.io"
+    },
+    {
+      "name": "Matthias Wagler",
+      "email": "matthias.wagler@thenativeweb.io"
+    }
+  ],
+  "main": "dist/index.js",
+  "dependencies": {
+    "shelljs": "0.8.2",
+    "wolkenkit-client": "2.0.0"
+  },
+  "devDependencies": {
+    "assertthat": "1.0.0",
+    "@babel/runtime": "7.1.2",
+    "puppeteer": "1.9.0",
+    "react": "16.5.2",
+    "react-dom": "16.5.2",
+    "roboter": "2.0.0",
+    "wolkenkit": "2.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nicolaisueper/wolkenkit-react.git"
+    "url": "git://github.com/thenativeweb/wolkenkit-react.git"
   },
   "keywords": [
-    "wolkenkit",
     "react",
-    "hoc"
+    "wolkenkit"
   ],
-  "author": "Nicolai Süper (nico@k40s.net)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/nicolaisueper/wolkenkit-react/issues"
-  },
-  "homepage": "https://github.com/nicolaisueper/wolkenkit-react#readme",
-  "peerDependencies": {
-    "react": "*",
-    "wolkenkit-client": ">= 2.0.0"
-  },
-  "devDependencies": {
-    "@babel/cli": "7.0.0-beta.53",
-    "@babel/core": "7.0.0-beta.53",
-    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.53",
-    "@babel/plugin-transform-modules-commonjs": "7.0.0-beta.53",
-    "@babel/plugin-transform-react-jsx": "7.0.0-beta.53",
-    "react": "16.4.1",
-    "wolkenkit-client": "2.0.0"
-  }
+  "license": "MIT"
 }

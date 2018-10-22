@@ -1,5 +1,5 @@
-import React from "react";
-import { Consumer } from "./WolkenkitContext";
+import { Consumer } from './WolkenkitContext';
+import React from 'react';
 
 const wolkenkitConnect = (mapCommandsToProps = {}) => Component => props => (
   <Consumer>
@@ -11,7 +11,8 @@ const wolkenkitConnect = (mapCommandsToProps = {}) => Component => props => (
         }),
         {}
       );
-      return <Component application={application} {...commands} {...props} />;
+
+      return <Component application={ application } { ...commands } { ...props } />;
     }}
   </Consumer>
 );
