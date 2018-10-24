@@ -98,14 +98,16 @@ const MessageDetails = () => (
 
 Set the `observe` property to `true` if you would like to read the item and observe future updates to it.
 
-## Bind application instance to component
+## Intent to deprecate: Bind application instance to a component
+
+The following `wolkenkitConnect` function has been been part of the original API of this module. This module is still in version `0.x` and its API is still in flux. So we're currently considering removing it in order to reduce and simplify the API. If you have any questions & concerns about this move, feel free to open an issue in this repository and give us feedback.
 
 ```js
 import { wolkenkitConnect } from 'wolkenkit-react';
 
 const Component = ({ application }) => <div>{/* ... */}</div>;
 
-// A little 'reduxy' way of managing commands :)
+// Mapping commands to props inspired by redux
 const mapCommandsToProps = {
   sendMessage: app => messageText =>
     app.communication.message().send({ text: messageText })
