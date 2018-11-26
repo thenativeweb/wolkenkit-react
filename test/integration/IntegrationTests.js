@@ -15,7 +15,7 @@ suite('Integration', async function () {
     browser = await puppeteer.launch();
     page = await browser.newPage();
 
-    await page.goto('http://0.0.0.0:8080/');
+    await page.goto('http://localhost:8080/');
   });
 
   teardown(async () => {

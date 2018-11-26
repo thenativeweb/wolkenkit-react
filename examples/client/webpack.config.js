@@ -11,7 +11,7 @@ module.exports = {
   entry: path.join(__dirname, 'src', 'index.jsx'),
   resolve: {
     alias: {
-      'wolkenkit-react': path.resolve(__dirname, '..', '..', '..')
+      'wolkenkit-react': path.resolve(__dirname, '..', '..')
     }
   },
   module: {

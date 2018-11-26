@@ -4,6 +4,7 @@
 
 # Build artefacts
 *build/
+examples/backend/
 
 # OS generated files and folders
 .DS_Store
