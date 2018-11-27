@@ -5,6 +5,7 @@
 # Build artefacts
 *build/
 examples/backend/
+examples/client/node_modules
 
 # OS generated files and folders
 .DS_Store
