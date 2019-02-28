@@ -38,7 +38,7 @@ const pre = async function () {
   shell.rm('-rf', env.path.backend);
   shell.mkdir(env.path.backend);
 
-  childProcess = shell.exec(`${env.path.wolkenkitBinary} init`, {
+  childProcess = shell.exec(`${env.path.wolkenkitBinary} init --template https://github.com/thenativeweb/wolkenkit-template-chat.git#master`, {
     cwd: env.path.backend
   });
 

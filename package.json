@@ -19,16 +19,20 @@
   "main": "dist/index.js",
   "dependencies": {
     "@babel/runtime": "7.1.5",
-    "wolkenkit-client": "2.0.0"
+    "wolkenkit-client": "3.1.0"
   },
   "devDependencies": {
-    "assertthat": "2.0.0",
-    "puppeteer": "1.10.0",
-    "react": "16.6.3",
-    "react-dom": "16.6.3",
-    "roboter": "3.0.2",
+    "assertthat": "2.0.3",
+    "puppeteer": "1.12.2",
+    "react": "16.8.3",
+    "react-dom": "16.8.3",
+    "roboter": "4.0.0",
     "shelljs": "0.8.3",
-    "wolkenkit": "2.0.0"
+    "wolkenkit": "3.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.3",
+    "react-dom": ">=16.8.3"
   },
   "repository": {
     "type": "git",
