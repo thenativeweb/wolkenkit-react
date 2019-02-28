@@ -10,7 +10,7 @@ $ npm install wolkenkit-react
 
 ## Connecting to an application
 
-First you need to add a reference to your application. For the minimum setup, you have to reference the `Application` component. The component establishes a connection to the backend and makes it available to all `wolkenkit-react` components using the [Context API](https://reactjs.org/docs/context.html), so make sure to use it at the top level of your component tree.
+First you need to add a reference to your application. For the minimum setup, you have to reference the `Application` component. The component establishes a connection to the backend and makes it available to all `wolkenkit-react` components using the [Context API](https://reactjs.org/docs/context.html), so make sure to use it at the top level of your component tree. It will render its children once the application has been connected.
 
 ```js
 import { Application } from 'wolkenkit-react';
@@ -25,6 +25,22 @@ export class App extends React.Component {
     );
   }
 }
+```
+
+### Connecting manually
+
+The `<Application />` component is well suited for simple use cases where you don't use a state container like MobX or Redux to manage your client state. In other scenarios where you actually have a state container, it will likely connect to your backend and therefore create the application instance. In such scenarios you can setup the connection to the wolkenkit-application wherever you like and use the `<Provider />` component to make the application available to all the other components inside your tree.
+
+```js
+import { Provider } from 'wolkenkit-react';
+import React from 'react';
+import ReactDom from 'react-dom';
+
+(async () => {
+  const application = await = wolkenkit.connect(...);
+
+  ReactDom.render(<Provider application={ application }><div className='my-chat'>/div></Provider>, document.querySelector('#root'));
+})();
 ```
 
 ## Sending commands
@@ -97,6 +113,49 @@ const MessageDetails = () => (
 ```
 
 Set the `observe` property to `true` if you would like to read the item and observe future updates to it.
+
+## Experimental API: Using hooks
+
+With version 16.8.0 [React introduced the new Hooks API](https://reactjs.org/docs/hooks-intro.html) in order to make stateful logic available to Function components. Therefore this package introduces an addtional API to provide wolkenkit functionality using Hooks to further simplify your React application. Pleaste note: this API is still in flux. 
+
+## Reading lists using the `useList` hook
+
+In order to read lists use the `useList` hook and provide `name` of the list as first parameter. You can provide several options using the second parameter. Set the `observe` property to `true` if you would like to read the list and observe future updates to it.
+
+```js
+import { useList } from 'wolkenkit-react';
+
+const MessageList = () => (
+  const [ messages ] = useList('messages', { observe: true });
+
+  return <ul className={ 'messages' }>messages.map(message => <li key={ message.id }>{ message.text }</li>)</ul>);
+);
+```
+
+Just like the plain JavaScript SDK you can use the `where`, `orderBy`, `skip` and `take` options to [filter lists](https://docs.wolkenkit.io/latest/reference/building-a-client/reading-lists/#filtering-lists).
+
+```js
+const [ topMessages ] = useList('messages', { observe: true,  where={{ likes: { $greaterThan: 100 }}}});
+```
+
+## Reading list items using the `useListItem` hook
+
+In order to read a single item of a list use the `useListItem` hook and provide the name of the list as the first parameter.
+
+```js
+import { useListItem } from 'wolkenkit-react';
+
+const MessageList = ({ id }) => (
+  const [ message ] = useListItem('messages', { id, observe: true });
+
+  if (!message) {
+    return null;
+  }
+
+  return <div className={ 'message' }>{ message.text }</div>;
+);
+```
+
 
 ## Intent to deprecate: Bind application instance to a component
 
