@@ -1,10 +1,10 @@
-import { Consumer } from './WolkenkitContext';
 import React from 'react';
+import WolkenkitContext from './WolkenkitContext';
 
 const withWolkenkit = Component => props => (
-  <Consumer>
+  <WolkenkitContext.Consumer>
     {application => (<Component application={ application } { ...props } />)}
-  </Consumer>
+  </WolkenkitContext.Consumer>
 );
 
 export { withWolkenkit };
