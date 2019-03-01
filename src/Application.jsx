@@ -12,14 +12,15 @@ class Application extends React.Component {
   }
 
   componentDidMount () {
-    const { host, port, protocol = 'wss' } = this.props;
+    const { host, port, protocol = 'wss', authentication } = this.props;
 
     /* eslint-disable no-console */
     wolkenkit.
       connect({
         host,
         port,
-        protocol
+        protocol,
+        authentication
       }).
       then(application => this.setState({ application })).
       catch(error => console.error(error));

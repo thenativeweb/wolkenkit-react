@@ -116,43 +116,41 @@ suite('integration', async function () {
       await teardownBrowser();
     });
 
-    suite('withWolkenkit', () => {
-      suite('useList', () => {
-        test('observes lists.', async () => {
-          await page.waitForFunction('document.querySelectorAll(".messages .message").length === 1');
-          const messages = await page.$$('.messages .message');
+    suite('useApplication', () => {
+      test('observes lists.', async () => {
+        await page.waitForFunction('document.querySelectorAll(".messages .message").length === 1');
+        const messages = await page.$$('.messages .message');
 
-          assert.that(messages.length).is.equalTo(1);
+        assert.that(messages.length).is.equalTo(1);
 
-          await page.type('#new-message', 'Hello hooks!');
+        await page.type('#new-message', 'Hello hooks!');
 
-          await page.click('#send-message');
-          await page.waitForFunction('document.querySelectorAll(".messages .message").length === 2');
+        await page.click('#send-message');
+        await page.waitForFunction('document.querySelectorAll(".messages .message").length === 2');
 
-          const secondLabel = await page.$eval('.messages .message:nth-child(2) .label', node => node.innerText);
+        const secondLabel = await page.$eval('.messages .message:nth-child(2) .label', node => node.innerText);
 
-          assert.that(secondLabel).is.equalTo('Hello hooks!');
-        });
+        assert.that(secondLabel).is.equalTo('Hello hooks!');
       });
+    });
 
-      suite('useListItem', () => {
-        test('observes a single item of a list.', async () => {
-          await page.waitForFunction('document.querySelectorAll(".messages .message").length === 2');
+    suite('useListItem', () => {
+      test('observes a single item of a list.', async () => {
+        await page.waitForFunction('document.querySelectorAll(".messages .message").length === 2');
 
-          await page.click('.messages .message:nth-child(2) .timestamp');
-          await page.waitForSelector('.right-panel .message-detail-panel .message');
+        await page.click('.messages .message:nth-child(2) .timestamp');
+        await page.waitForSelector('.right-panel .message-detail-panel .message');
 
-          const initialLikes = await page.$eval('.message-detail-panel .message .likes .count', node => node.innerText);
+        const initialLikes = await page.$eval('.message-detail-panel .message .likes .count', node => node.innerText);
 
-          assert.that(initialLikes).is.equalTo('0');
+        assert.that(initialLikes).is.equalTo('0');
 
-          await page.click('.message-detail-panel .message .likes');
-          await page.waitForFunction('document.querySelector(".message-detail-panel .message .likes .count").innerText === "1"');
+        await page.click('.message-detail-panel .message .likes');
+        await page.waitForFunction('document.querySelector(".message-detail-panel .message .likes .count").innerText === "1"');
 
-          const likes = await page.$eval('.message-detail-panel .message .likes .count', node => node.innerText);
+        const likes = await page.$eval('.message-detail-panel .message .likes .count', node => node.innerText);
 
-          assert.that(likes).is.equalTo('1');
-        });
+        assert.that(likes).is.equalTo('1');
       });
     });
   });

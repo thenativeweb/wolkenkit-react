@@ -56,7 +56,7 @@ class Chat extends React.Component {
     });
   }
 
-  handleSendMessageClick (event) {
+  async handleSendMessageClick (event) {
     event.preventDefault();
 
     const { application } = this.props;
@@ -66,8 +66,16 @@ class Chat extends React.Component {
       return;
     }
 
-    application.communication.message().send({
-      text: newMessageText
+    await new Promise((resolve, reject) => {
+      application.communication.message().send({
+        text: newMessageText
+      }).
+        await('sent', resolve).
+        failed(reject);
+    });
+
+    this.setState({
+      newMessageText: ''
     });
   }
 

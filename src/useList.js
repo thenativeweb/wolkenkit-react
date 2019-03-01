@@ -19,6 +19,11 @@ const reducer = function (state, action) {
 
 const useList = function (name, { where, observe = false, orderBy, skip, take } = {}) {
   const application = useApplication();
+
+  if (!application) {
+    throw new Error('Application is misssing.');
+  }
+
   const [ state, dispatch ] = useReducer(
     reducer,
     {
@@ -26,10 +31,6 @@ const useList = function (name, { where, observe = false, orderBy, skip, take } 
       error: undefined
     }
   );
-
-  if (!application) {
-    throw new Error('Wolkenkit application not available.');
-  }
 
   useEffect(() => {
     const list = application.lists[name];
