@@ -2,6 +2,8 @@
 
 Official React bindings for [wolkenkit](https://github.com/thenativeweb/wolkenkit).
 
+## Table of Contents
+
 ## Installation
 
 ```shell
@@ -29,7 +31,7 @@ export class App extends React.Component {
 
 ### Connecting manually
 
-The `<Application />` component is well suited for simple use cases where you don't use a state container like MobX or Redux to manage your client state. In other scenarios where you actually have a state container, it will likely connect to your backend and therefore create the application instance. In such scenarios you can setup the connection to the wolkenkit-application wherever you like and use the `<Provider />` component to make the application available to all the other components inside your tree.
+The `<Application />` component is well suited for simple use cases where you don't use a state container like MobX or Redux to manage your client state. In other scenarios where you actually have a state container, this container will likely connect to your backend and therefore create the wolkenkit application instance. In such scenarios you can setup the connection to the wolkenkit application wherever you like and use the `<Provider />` component to make the application available to all the other components inside your tree.
 
 ```js
 import { Provider } from 'wolkenkit-react';
@@ -37,15 +39,19 @@ import React from 'react';
 import ReactDom from 'react-dom';
 
 (async () => {
-  const application = await = wolkenkit.connect(...);
+  const application = await wolkenkit.connect(...);
 
-  ReactDom.render(<Provider application={ application }><div className='my-chat'>/div></Provider>, document.querySelector('#root'));
+  ReactDom.render((
+    <Provider application={ application }>
+      <div className='my-chat'></div>
+    </Provider>
+  ), document.querySelector('#root'));
 })();
 ```
 
 ## Sending commands
 
-If you want to send commands from a component use the `withWolkenkit` function to provide the `application` to this component as a property. The application is simply an app instance provided by the [`wolkenkit-client-js`](https://docs.wolkenkit.io/latest/reference/building-a-client/connecting-to-an-application/) module. So you just like the plain client you can use it for [sending commands](https://docs.wolkenkit.io/latest/reference/building-a-client/sending-commands/) or [receiving events](https://docs.wolkenkit.io/latest/reference/building-a-client/receiving-events/).
+If you want to send commands from a component use the `withWolkenkit` function to provide the `application` to this component as a property. The application is simply an app instance provided by the [`wolkenkit-client-js`](https://docs.wolkenkit.io/latest/reference/building-a-client/connecting-to-an-application/) module. So just like the plain client, you can use it to [send commands](https://docs.wolkenkit.io/latest/reference/building-a-client/sending-commands/).
 
 Most often you will likely use this method to send commands from event handlers like this…
 
@@ -116,7 +122,30 @@ Set the `observe` property to `true` if you would like to read the item and obse
 
 ## Experimental API: Using hooks
 
-With version 16.8.0 [React introduced the new Hooks API](https://reactjs.org/docs/hooks-intro.html) in order to make stateful logic available to Function components. Therefore this package introduces an addtional API to provide wolkenkit functionality using Hooks to further simplify your React application. Pleaste note: this API is still in flux. 
+With version 16.8.0 [React introduced the new Hooks API](https://reactjs.org/docs/hooks-intro.html) in order to make stateful logic available to Function components. Therefore this package introduces a new API to provide wolkenkit functionality to functional components. Pleaste note: this API is still in flux. If you have any questions & concerns about this, feel free to [open an issue in this repository](/issues) and give  feedback.
+
+## Sending commands
+
+If you want to send commands from a functional component use the `withApplication` hook to provide the `application`. It returns an instance of the plain client that you can use to [send commands](https://docs.wolkenkit.io/latest/reference/building-a-client/sending-commands/).
+
+```js
+const ChatWithHooks = function () {
+  const application = useApplication();
+  const [ newMessageText, setNewMessage ] = useState('New message');
+
+  const handleSendMessageClick = function (event) {
+    application.communication.message().send({
+      text: newMessageText
+    });
+  };
+
+  render () {
+    <div>
+      <button onClick={ handleSendMessageClick }>Send message</button>
+    </div>
+  }
+};
+```
 
 ## Reading lists using the `useList` hook
 
@@ -156,10 +185,9 @@ const MessageList = ({ id }) => (
 );
 ```
 
-
 ## Intent to deprecate: Bind application instance to a component
 
-The following `wolkenkitConnect` function has been been part of the original API of this module. This module is still in version `0.x` and its API is still in flux. So we're currently considering removing it in order to reduce and simplify the API. If you have any questions & concerns about this move, feel free to open an issue in this repository and give us feedback.
+The following `wolkenkitConnect` function has been been part of the original API of this module. This module is still in version `0.x` and its API is still in flux. So we're currently considering removing it in order to reduce and simplify the API. If you have any questions & concerns about this move, feel free to [open an issue in this repository](/issues) and give us feedback.
 
 ```js
 import { wolkenkitConnect } from 'wolkenkit-react';
@@ -186,7 +214,7 @@ $ npx roboter
 ## License
 
 The MIT License (MIT)
-Copyright (c) 2018 Nicolai Süper and the native web.
+Copyright (c) 2018 - 2019 Nicolai Süper and the native web.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
