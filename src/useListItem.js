@@ -18,6 +18,13 @@ const reducer = function (state, action) {
 };
 
 const useListItem = function (name, id, { observe = false } = {}) {
+  if (!name) {
+    throw new Error('Name is misssing.');
+  }
+  if (!id) {
+    throw new Error('Id is misssing.');
+  }
+
   const application = useApplication();
 
   if (!application) {

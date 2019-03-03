@@ -18,6 +18,10 @@ const reducer = function (state, action) {
 };
 
 const useList = function (name, { where, observe = false, orderBy, skip, take } = {}) {
+  if (!name) {
+    throw new Error('Name is misssing.');
+  }
+
   const application = useApplication();
 
   if (!application) {
