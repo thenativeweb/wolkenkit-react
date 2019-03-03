@@ -18,10 +18,10 @@ suite('integration', async function () {
     }
 
     browser = await puppeteer.launch({
-      headless: false
+      headless: true
     });
-    page = await browser.newPage();
 
+    page = await browser.newPage();
     page.on('console', message => {
       if (message.type() === 'info' || message.type() === 'error') {
         return;
@@ -50,16 +50,13 @@ suite('integration', async function () {
     });
 
     suite('withWolkenkit', () => {
-      test('sets the application as property.', async () => {
+      test('provides the application as property.', async () => {
         await page.waitForSelector('.messages');
 
         assert.that(consoleLogs.length).is.equalTo(1);
 
-        const firstMessage = consoleLogs[0];
-
-        const text = await firstMessage.text();
-
-        const messageArguments = firstMessage.args();
+        const text = await consoleLogs[0].text();
+        const messageArguments = consoleLogs[0].args();
         const applicationHandle = messageArguments[1];
         const communicationHandle = await applicationHandle.getProperty('communication');
         const commnunication = await communicationHandle.jsonValue();
@@ -117,6 +114,23 @@ suite('integration', async function () {
     });
 
     suite('useApplication', () => {
+      test('provides the application as property.', async () => {
+        await page.waitForSelector('.messages');
+
+        assert.that(consoleLogs.length).is.equalTo(1);
+
+        const text = await consoleLogs[0].text();
+        const messageArguments = consoleLogs[0].args();
+        const applicationHandle = messageArguments[1];
+        const communicationHandle = await applicationHandle.getProperty('communication');
+        const commnunication = await communicationHandle.jsonValue();
+
+        assert.that(text.startsWith('ChatWithHooks.componentDidMount')).is.true();
+        assert.that(commnunication).is.equalTo({ message: {}});
+      });
+    });
+
+    suite('useList', () => {
       test('observes lists.', async () => {
         await page.waitForFunction('document.querySelectorAll(".messages .message").length === 1');
         const messages = await page.$$('.messages .message');

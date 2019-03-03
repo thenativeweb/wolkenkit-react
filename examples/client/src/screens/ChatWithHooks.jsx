@@ -36,7 +36,7 @@ const ChatWithHooks = function () {
 
   useEffect(() => {
     /* eslint-disable no-console */
-    console.log('Chat.componentDidMount', application);
+    console.log('ChatWithHooks.componentDidMount', application);
     /* eslint-enable no-console */
   }, []);
 
