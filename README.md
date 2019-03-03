@@ -31,7 +31,7 @@ export class App extends React.Component {
 
 ### Connecting manually
 
-The `<Application />` component is well suited for simple use cases where you don't use a state container like MobX or Redux to manage your client state. In other scenarios where you actually have a state container, this container will likely connect to your backend and therefore create the wolkenkit application instance. In such scenarios you can setup the connection to the wolkenkit application wherever you like and use the `<Provider />` component to make the application available to all the other components inside your tree.
+The `<Application />` component is well suited for simple use cases where you don't use a state container like `MobX` or `Redux` to manage your client state. In scenarios where you actually have a state container, this container will likely connect to your backend and therefore create the wolkenkit application instance. In such scenarios you can setup the connection to the wolkenkit application wherever you like and use the `<Provider />` component to make the application available to all the other components inside your tree.
 
 ```js
 import { Provider } from 'wolkenkit-react';
@@ -126,7 +126,7 @@ With version 16.8.0 [React introduced the new Hooks API](https://reactjs.org/doc
 
 ## Sending commands
 
-If you want to send commands from a functional component use the `withApplication` hook to provide the `application`. It returns an instance of the plain client that you can use to [send commands](https://docs.wolkenkit.io/latest/reference/building-a-client/sending-commands/).
+If you want to send commands from a functional component use the `useApplication` hook to provide the `application`. It returns an instance of the plain client that you can use to [send commands](https://docs.wolkenkit.io/latest/reference/building-a-client/sending-commands/).
 
 ```js
 const ChatWithHooks = function () {
@@ -149,7 +149,7 @@ const ChatWithHooks = function () {
 
 ## Reading lists using the `useList` hook
 
-In order to read lists use the `useList` hook and provide `name` of the list as first parameter. You can provide several options using the second parameter. Set the `observe` property to `true` if you would like to read the list and observe future updates to it.
+In order to read lists use the `useList` hook and provide `name` of the list as first parameter. You can provide additional options using the second parameter. Set the `observe` property to `true` if you would like to read the list and observe future updates to it.
 
 ```js
 import { useList } from 'wolkenkit-react';
@@ -169,13 +169,13 @@ const [ topMessages ] = useList('messages', { observe: true,  where={{ likes: { 
 
 ## Reading list items using the `useListItem` hook
 
-In order to read a single item of a list use the `useListItem` hook and provide the name of the list as the first parameter.
+In order to read a single item of a list use the `useListItem` hook and provide the name of the list as the first parameter and the id of the item as second parameter. You can provide additional options using the third parameter. Set the `observe` property to `true` if you would like to read the list and observe future updates to it.
 
 ```js
 import { useListItem } from 'wolkenkit-react';
 
 const MessageList = ({ id }) => (
-  const [ message ] = useListItem('messages', { id, observe: true });
+  const [ message ] = useListItem('messages', id, { observe: true });
 
   if (!message) {
     return null;
