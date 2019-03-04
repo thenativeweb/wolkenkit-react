@@ -25,7 +25,7 @@ const appStateReducer = function (state, action) {
         selectedMessageId: undefined
       };
     default:
-      throw new Error();
+      throw new Error('Invalid operation.');
   }
 };
 
@@ -35,6 +35,7 @@ const ChatWithHooks = function () {
   const [ state, dispatch ] = useReducer(appStateReducer, initialState);
 
   useEffect(() => {
+    // We log to the console here so that integration tests can verify the application instance.
     /* eslint-disable no-console */
     console.log('ChatWithHooks.componentDidMount', application);
     /* eslint-enable no-console */

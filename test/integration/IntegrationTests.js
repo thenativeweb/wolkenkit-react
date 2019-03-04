@@ -40,7 +40,7 @@ suite('integration', async function () {
     await browser.close();
   };
 
-  suite('Classic components', () => {
+  suite('class components', () => {
     setup(async () => {
       await setupBrowser('http://localhost:8080');
     });
@@ -104,7 +104,7 @@ suite('integration', async function () {
     });
   });
 
-  suite('Hooked components', () => {
+  suite('hooked components', () => {
     setup(async () => {
       await setupBrowser('http://localhost:8080/?use-hooks');
     });

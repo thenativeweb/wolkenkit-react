@@ -23,6 +23,7 @@ class Chat extends React.Component {
   componentDidMount () {
     const { application } = this.props;
 
+    // We log to the console here so that integration tests can verify the application instance.
     /* eslint-disable no-console */
     console.log('Chat.componentDidMount', application);
     /* eslint-enable no-console */
@@ -124,7 +125,6 @@ class Chat extends React.Component {
                     onLikeClick={ this.handleLikeClick }
                   />
               }
-
             </div>
           ) :
           null

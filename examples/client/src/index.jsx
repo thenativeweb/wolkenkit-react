@@ -1,12 +1,12 @@
 /* eslint-disable sort-imports */
 import '@babel/polyfill';
 import Chat from './screens/Chat.jsx';
+/* eslint-enable sort-imports */
 import ChatWithHooks from './screens/ChatWithHooks.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import wolkenkit from 'wolkenkit-client';
 import { Application, Provider } from 'wolkenkit-react';
-/* eslint-enable sort-imports */
 
 const useHooks = window.location.search === '?use-hooks';
 

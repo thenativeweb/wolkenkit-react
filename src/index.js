@@ -6,6 +6,14 @@ import { useApplication } from './useApplication';
 import { useList } from './useList';
 import { useListItem } from './useListItem';
 import { withWolkenkit } from './withWolkenkit';
-import { wolkenkitConnect } from './wolkenkitConnect';
 
-export { Application, List, ListItem, Provider, withWolkenkit, wolkenkitConnect, useApplication, useList, useListItem };
+export {
+  Application,
+  List,
+  ListItem,
+  Provider,
+  withWolkenkit,
+  useApplication,
+  useList,
+  useListItem
+};

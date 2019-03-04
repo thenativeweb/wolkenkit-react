@@ -13,22 +13,22 @@ const reducer = function (state, action) {
         error: action.error
       };
     default:
-      throw new Error();
+      throw new Error('Invalid operation.');
   }
 };
 
 const useListItem = function (name, id, { observe = false } = {}) {
   if (!name) {
-    throw new Error('Name is misssing.');
+    throw new Error('Name is missing.');
   }
   if (!id) {
-    throw new Error('Id is misssing.');
+    throw new Error('Id is missing.');
   }
 
   const application = useApplication();
 
   if (!application) {
-    throw new Error('Application is misssing.');
+    throw new Error('Application is missing.');
   }
 
   const [ state, dispatch ] = useReducer(
