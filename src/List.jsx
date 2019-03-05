@@ -53,7 +53,7 @@ class List extends React.Component {
     } = this.props;
 
     if (!application) {
-      throw new Error('Application is misssing.');
+      throw new Error('Application is missing.');
     }
 
     const list = application.lists[name];

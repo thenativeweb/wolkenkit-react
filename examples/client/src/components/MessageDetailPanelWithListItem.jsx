@@ -2,7 +2,7 @@ import { ListItem } from 'wolkenkit-react';
 import Message from './Message.jsx';
 import React from 'react';
 
-const MessageDetailPanel = function ({ id, onClose, onLikeClick } = {}) {
+const MessageDetailPanelWithListItem = function ({ id, onClose, onLikeClick } = {}) {
   return (
     <div className='message-detail-panel'>
       <ListItem list='messages' id={ id } observe={ true }>
@@ -23,4 +23,4 @@ const MessageDetailPanel = function ({ id, onClose, onLikeClick } = {}) {
   );
 };
 
-export default MessageDetailPanel;
+export default MessageDetailPanelWithListItem;
