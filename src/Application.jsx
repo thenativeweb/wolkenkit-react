@@ -1,4 +1,4 @@
-import { Provider } from './WolkenkitContext';
+import { Provider } from './Provider';
 import React from 'react';
 import wolkenkit from 'wolkenkit-client';
 
@@ -12,14 +12,15 @@ class Application extends React.Component {
   }
 
   componentDidMount () {
-    const { host, port, protocol = 'wss' } = this.props;
+    const { host, port, protocol = 'wss', authentication } = this.props;
 
     /* eslint-disable no-console */
     wolkenkit.
       connect({
         host,
         port,
-        protocol
+        protocol,
+        authentication
       }).
       then(application => this.setState({ application })).
       catch(error => console.error(error));
@@ -27,8 +28,10 @@ class Application extends React.Component {
   }
 
   render () {
+    const { application } = this.state;
+
     return (
-      <Provider value={ this.state.application }>{this.props.children}</Provider>
+      <Provider application={ application }>{this.props.children}</Provider>
     );
   }
 }

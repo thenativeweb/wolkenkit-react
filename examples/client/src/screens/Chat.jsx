@@ -1,7 +1,9 @@
-import Message from './Message.jsx';
-import MessageDetailPanel from './MessageDetailPanel.jsx';
+import MessageDetailPanelWithListItem from '../components/MessageDetailPanelWithListItem.jsx';
+import MessageDetailPanelWithUseListItem from '../components/MessageDetailPanelWithUseListItem.jsx';
+import MessagesWithList from '../components/MessagesWithList.jsx';
+import MessagesWithUseList from '../components/MessagesWithUseList.jsx';
 import React from 'react';
-import { List, withWolkenkit } from 'wolkenkit-react';
+import { withWolkenkit } from 'wolkenkit-react';
 
 class Chat extends React.Component {
   constructor (props) {
@@ -16,6 +18,15 @@ class Chat extends React.Component {
       newMessageText: '',
       selectedMessageId: undefined
     };
+  }
+
+  componentDidMount () {
+    const { application } = this.props;
+
+    // We log to the console here so that integration tests can verify the application instance.
+    /* eslint-disable no-console */
+    console.log('Chat.componentDidMount', application);
+    /* eslint-enable no-console */
   }
 
   handleMessageDetailClick (event) {
@@ -46,7 +57,7 @@ class Chat extends React.Component {
     });
   }
 
-  handleSendMessageClick (event) {
+  async handleSendMessageClick (event) {
     event.preventDefault();
 
     const { application } = this.props;
@@ -56,32 +67,33 @@ class Chat extends React.Component {
       return;
     }
 
-    application.communication.message().send({
-      text: newMessageText
+    await new Promise((resolve, reject) => {
+      application.communication.message().send({
+        text: newMessageText
+      }).
+        await('sent', resolve).
+        failed(reject);
+    });
+
+    this.setState({
+      newMessageText: ''
     });
   }
 
   render () {
     const { newMessageText, selectedMessageId } = this.state;
 
+    const useHooks = window.location.search === '?use-hooks';
+
     return (
       <div className='screen'>
         <div className='left-panel'>
           <ul className='messages'>
-            <List name='messages' observe={ true }>
-              { messages => messages.map(message => (
-                <Message
-                  key={ message.id }
-                  id={ message.id }
-                  likes={ message.likes }
-                  text={ message.text }
-                  timestamp={ message.timestamp }
-                  onLikeClick={ this.handleLikeClick }
-                  onTimestampClick={ this.handleMessageDetailClick }
-                />
-              ))
-              }
-            </List>
+            {
+              useHooks ?
+                <MessagesWithUseList onLikeClick={ this.handleLikeClick } onMessageDetailClick={ this.handleMessageDetailClick } /> :
+                <MessagesWithList onLikeClick={ this.handleLikeClick } onMessageDetailClick={ this.handleMessageDetailClick } />
+            }
           </ul>
 
           <form className='send-message-form'>
@@ -100,11 +112,19 @@ class Chat extends React.Component {
         { selectedMessageId ?
           (
             <div className='right-panel'>
-              <MessageDetailPanel
-                id={ selectedMessageId }
-                onClose={ () => this.setState({ selectedMessageId: undefined }) }
-                onLikeClick={ this.handleLikeClick }
-              />
+              {
+                useHooks ?
+                  <MessageDetailPanelWithUseListItem
+                    id={ selectedMessageId }
+                    onClose={ () => this.setState({ selectedMessageId: undefined }) }
+                    onLikeClick={ this.handleLikeClick }
+                  /> :
+                  <MessageDetailPanelWithListItem
+                    id={ selectedMessageId }
+                    onClose={ () => this.setState({ selectedMessageId: undefined }) }
+                    onLikeClick={ this.handleLikeClick }
+                  />
+              }
             </div>
           ) :
           null

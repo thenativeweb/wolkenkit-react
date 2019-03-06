@@ -6,31 +6,48 @@ const path = require('path');
 
 const shell = require('shelljs');
 
-const processes = require('../shared/processes');
-
-const projectRoot = path.join(__dirname, '..', '..');
-const testApplicationDirectory = path.join(projectRoot, 'examples', 'chat');
-const testApplicationClient = path.join(testApplicationDirectory, 'client');
-const wolkenkitBinary = path.join(projectRoot, 'node_modules', '.bin', 'wolkenkit');
+const env = require('./env'),
+      processes = require('../shared/processes');
 
 const pre = async function () {
-  // Precompile and create a temporary wolkenkit-client SDK distributable, so
+  // Precompile and create a temporary wolkenkit-react distributable, so
   // that the tests always use the latest version.
   let childProcess = shell.exec(`npx roboter precompile`, {
-    cwd: projectRoot
+    cwd: env.path.projectRoot
   });
 
   if (childProcess.code !== 0) {
-    throw new Error('Failed to create bundle.');
+    throw new Error('Failed to create dist.');
+  }
+
+  // We install the depencencies of the webpack example.
+  if (!shell.test('-d', path.join(env.path.client, 'node_modules'))) {
+    childProcess = shell.exec('npm install', { cwd: env.path.client });
+
+    if (childProcess.code !== 0) {
+      throw new Error('Failed to install client dependencies.');
+    }
   }
 
   processes.devserver = shell.exec('npx bot serve', {
-    cwd: testApplicationClient,
+    cwd: env.path.client,
     async: true
   });
 
-  childProcess = shell.exec(`${wolkenkitBinary} start --shared-key wolkenkit`, {
-    cwd: testApplicationDirectory
+  // Remove backend folder from previous tests.
+  shell.rm('-rf', env.path.backend);
+  shell.mkdir(env.path.backend);
+
+  childProcess = shell.exec(`${env.path.wolkenkitBinary} init --template https://github.com/thenativeweb/wolkenkit-template-chat.git#master`, {
+    cwd: env.path.backend
+  });
+
+  if (childProcess.code !== 0) {
+    throw new Error('Failed to init wolkenkit application.');
+  }
+
+  childProcess = shell.exec(`${env.path.wolkenkitBinary} start --shared-key wolkenkit`, {
+    cwd: env.path.backend
   });
 
   if (childProcess.code !== 0) {

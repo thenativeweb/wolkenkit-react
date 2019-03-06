@@ -2,23 +2,18 @@
 'use strict';
 /* eslint-enable strict */
 
-const path = require('path');
-
 const shell = require('shelljs');
 
-const processes = require('../shared/processes');
-
-const projectRoot = path.join(__dirname, '..', '..');
-const testApplicationDirectory = path.join(projectRoot, 'examples', 'chat');
-const wolkenkitBinary = path.join(projectRoot, 'node_modules', '.bin', 'wolkenkit');
+const env = require('./env'),
+      processes = require('../shared/processes');
 
 const post = async function () {
   if (processes.devserver) {
     processes.devserver.kill('SIGINT');
   }
 
-  const childProcess = shell.exec(`${wolkenkitBinary} stop --dangerously-destroy-data`, {
-    cwd: testApplicationDirectory
+  const childProcess = shell.exec(`${env.path.wolkenkitBinary} stop --dangerously-destroy-data`, {
+    cwd: env.path.backend
   });
 
   if (childProcess.code !== 0) {

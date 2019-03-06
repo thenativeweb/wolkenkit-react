@@ -8,10 +8,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
+  devtool: 'source-map',
   entry: path.join(__dirname, 'src', 'index.jsx'),
   resolve: {
     alias: {
-      'wolkenkit-react': path.resolve(__dirname, '..', '..', '..')
+      'wolkenkit-react': path.resolve(__dirname, '..', '..'),
+
+      // We need to make sure only one version of react is loaded
+      // see https://reactjs.org/warnings/invalid-hook-call-warning.html
+      react: path.resolve(__dirname, 'node_modules', 'react')
     }
   },
   module: {
