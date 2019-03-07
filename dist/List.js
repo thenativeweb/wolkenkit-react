@@ -81,7 +81,7 @@ function (_React$Component) {
           take = _this$props.take;
 
       if (!application) {
-        throw new Error('Application is misssing.');
+        throw new Error('Application is missing.');
       }
 
       var list = application.lists[name];

@@ -5,13 +5,11 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Consumer = exports.Provider = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _React$createContext = _react.default.createContext(),
-    Provider = _React$createContext.Provider,
-    Consumer = _React$createContext.Consumer;
+var Context = _react.default.createContext();
 
-exports.Consumer = Consumer;
-exports.Provider = Provider;
+var _default = Context;
+exports.default = _default;

@@ -17,7 +17,7 @@ var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/ge
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
-var _WolkenkitContext = require("./WolkenkitContext");
+var _Provider = require("./Provider");
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -48,13 +48,15 @@ function (_React$Component) {
           host = _this$props.host,
           port = _this$props.port,
           _this$props$protocol = _this$props.protocol,
-          protocol = _this$props$protocol === void 0 ? 'wss' : _this$props$protocol;
+          protocol = _this$props$protocol === void 0 ? 'wss' : _this$props$protocol,
+          authentication = _this$props.authentication;
       /* eslint-disable no-console */
 
       _wolkenkitClient.default.connect({
         host: host,
         port: port,
-        protocol: protocol
+        protocol: protocol,
+        authentication: authentication
       }).then(function (application) {
         return _this2.setState({
           application: application
@@ -68,8 +70,9 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return _react.default.createElement(_WolkenkitContext.Provider, {
-        value: this.state.application
+      var application = this.state.application;
+      return _react.default.createElement(_Provider.Provider, {
+        application: application
       }, this.props.children);
     }
   }]);
