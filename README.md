@@ -169,7 +169,7 @@ import { useList } from 'wolkenkit-react';
 const MessageList = () => (
   const [ messages ] = useList('messages', { observe: true });
 
-  return <ul className={ 'messages' }>messages.map(message => <li key={ message.id }>{ message.text }</li>)</ul>);
+  return <ul className={ 'messages' }>{ messages.map(message => <li key={ message.id }>{ message.text }</li>) }</ul>);
 );
 ```
 
@@ -186,7 +186,7 @@ In order to read a single item of a list use the `useListItem` hook and provide 
 ```javascript
 import { useListItem } from 'wolkenkit-react';
 
-const MessageList = ({ id }) => (
+const Message = ({ id }) => (
   const [ message ] = useListItem('messages', id, { observe: true });
 
   if (!message) {
