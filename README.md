@@ -4,6 +4,19 @@ Official React bindings for [wolkenkit](https://github.com/thenativeweb/wolkenki
 
 ## Table of Contents
 
+-   [Installation](#installation)
+-   [Connecting to an application](#connecting-to-an-application)
+    -   [Connecting manually](#connecting-manually)
+-   [Sending commands](#sending-commands)
+-   [Reading lists](#reading-lists)
+-   [Reading a single item of a list](#reading-a-single-item-of-a-list)
+-   [Experimental API: Using hooks](#experimental-api-using-hooks)
+    -   [Sending commands](#sending-commands-1)
+    -   [Reading lists using the useList hook](#reading-lists-using-the-uselist-hook)
+    -   [Reading list items using the useListItem hook](#reading-list-items-using-the-uselistitem-hook)
+-   [Running the build](#running-the-build)
+-   [License](#license)
+
 ## Installation
 
 ```shell
